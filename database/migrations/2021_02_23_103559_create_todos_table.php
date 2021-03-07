@@ -17,6 +17,7 @@ class CreateTodosTable extends Migration
             $table->increments('id');
             $table->string('content');
             $table->integer('priority');
+            $table->string('status');
             $table->timestamps();
         });
     }

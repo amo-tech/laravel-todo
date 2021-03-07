@@ -14,6 +14,11 @@
             <option value="1">mid</option>
             <option value="2">low</option>
         </select>
+        <select name="status">
+            <option value="0">Todo</option>
+            <option value="1">実装中</option>
+            <option value="2">Done</option>
+        </select>
         <button type="submit">送信</button>
     </form>
 

@@ -33,6 +33,7 @@ class TodosController extends Controller
         $todos = new Todo;
         $todos->content = request('content');
         $todos->priority = request('priority');
+        $todos->status = request('status');
         $todos->save();
         return redirect()->route('todos.detail', ['id' => $todos->id]);
     }
@@ -45,6 +46,19 @@ class TodosController extends Controller
         return redirect(route('todos.detail', ['id' => $id]));
     }
 
+    public function status(Request $request, $id){
+        $status = Todo::find($id);
+        $status->status = request('status');
+        $status->save();
+        return redirect()->route('todos.detail', ['id' => $status->id]);
+    }
+
+    public function statechange(Request $request, $id){
+        $todo = Todo::find($id);
+        $todo->status = request('status');
+        $todo->save();
+        return redirect()->route('todos.detail', ['id' => $todo->id]);
+    }
 
     public function edit($id)
     {
