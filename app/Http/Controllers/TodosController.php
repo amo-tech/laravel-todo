@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 
 class TodosController extends Controller
 {
+
     public function index()
     {
         $todos = Todo::orderby('priority')->get();
@@ -17,7 +19,7 @@ class TodosController extends Controller
 
     public function show($id)
     {
-        $todos = Todo::find($id);
+        $todos = Todo::with('comments')->find($id);
         return view('show', ['todos' => $todos]);
     }
 
@@ -26,15 +28,24 @@ class TodosController extends Controller
         $todos = new Todo;
         return view('new', ['todos' => $todos]);
     }
-    public function store(Request $request)
+    public function storeNew(Request $request)
     {
         $todos = new Todo;
-        $todos->id = request('id');
         $todos->content = request('content');
         $todos->priority = request('priority');
         $todos->save();
         return redirect()->route('todos.detail', ['id' => $todos->id]);
     }
+    public function storeComment(Request $request, $id)
+    {
+        $comment = new Comment;
+        $comment->todo_id = $id;
+        $comment->comment = request('comment');
+        $comment->save();
+        return redirect(route('todos.detail', ['id' => $id]));
+    }
+
+
     public function edit($id)
     {
         $todos = Todo::find($id);

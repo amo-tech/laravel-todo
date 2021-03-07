@@ -12,3 +12,7 @@
 2021-03-01 13:18:56,250 INFO spawned: 'php' with pid 132
 2021-03-01 13:18:56,281 INFO exited: php (exit status 1; not expected)
 2021-03-01 13:18:57,285 INFO gave up: php entered FATAL state, too many start retries too quickly
+2021-03-01 13:33:39,154 INFO Set uid to user 0 succeeded
+2021-03-01 13:33:39,162 INFO supervisord started with pid 17
+2021-03-01 13:33:40,167 INFO spawned: 'php' with pid 19
+2021-03-01 13:33:41,170 INFO success: php entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
